@@ -2,14 +2,15 @@ CREATE SCHEMA IF NOT EXISTS UNS;
 USE UNS;
 
 DROP TABLE IF EXISTS cliente;
-CREATE TABLE cliente 
- (id                         VARCHAR(3)  NOT NULL,
-  nombre                     VARCHAR(20) NOT NULL,
+
+CREATE TABLE cliente (
+  id                         VARCHAR(3)  NOT NULL,
+  nombre                     VARCHAR(50) NOT NULL,
   telefono                   VARCHAR(20) NOT NULL,
-  direccion                  VARCHAR(20),
-  ciudad                     VARCHAR(20),
-  provincia                  VARCHAR(15),
-  país                       VARCHAR(20),
+  direccion                  VARCHAR(50),
+  ciudad                     VARCHAR(50),
+  provincia                  VARCHAR(50),
+  pais                       VARCHAR(50),
   codigo_postal              VARCHAR(15),
   historial_crediticio       VARCHAR(9),
   ventas_rep_id              VARCHAR(3),
@@ -17,24 +18,22 @@ CREATE TABLE cliente
   comentarios                VARCHAR(255),
   CONSTRAINT cliente_id_pk PRIMARY KEY (id),
   CONSTRAINT cliente_historial_crediticio_ck
-  CHECK (historial_crediticio IN ('EXCELENTE', 'BUENO', 'MALO'))
- );
+    CHECK (historial_crediticio IN ('EXCELENTE', 'BUENO', 'MALO'))
+);
 
-
+-- Datos para EE.UU.
 INSERT INTO cliente VALUES ('301', 'Sports,Inc', '540-123-4567','72 High St',
 'Harrisonburg', 'VA','US', '22809','EXCELENTE', '12', '1', NULL);
 INSERT INTO cliente VALUES ('302', 'Toms Sporting BUENOs', '540-987-6543','6741 Main St',
 'Harrisonburg', 'VA','US', '22809','MALO', '14', '1', NULL);
 INSERT INTO cliente VALUES ('303', 'Athletic Attire', '540-123-6789','54 Market St',
 'Harrisonburg', 'VA','US', '22808','BUENO', '14', '1', NULL);
-INSERT INTO cliente 
-VALUES ('304', 'Athletics For All', '540-987-1234','286 Main St', 'Harrisonburg', 'VA',
-'US', '22808','EXCELENTE', '12', '1', NULL);
+INSERT INTO cliente VALUES ('304', 'Athletics For All', '540-987-1234','286 Main St',
+'Harrisonburg', 'VA','US', '22808','EXCELENTE', '12', '1', NULL);
 INSERT INTO cliente VALUES ('305', 'Shoes for Sports', '540-123-9876','538 High St',
 'Harrisonburg', 'VA','US', '22809','EXCELENTE', '14', '1', NULL);
 INSERT INTO cliente VALUES ('306', 'BJ Athletics', '540-987-9999','632 Water St',
 'Harrisonburg', 'VA','US', '22810','MALO', '12', '1', NULL);
-
 INSERT INTO cliente VALUES ('403', 'Athletics One', '717-234-6786','912 Columbia Rd',
 'Lancaster', 'PA','US', '17601','BUENO', '14', '1', NULL);
 INSERT INTO cliente VALUES ('404', 'Great Athletes', '717-987-2341','121 Litiz Pike',
@@ -44,6 +43,7 @@ INSERT INTO cliente VALUES ('405', 'Athletics Two', '717-987-9875','435 High Rd'
 INSERT INTO cliente VALUES ('406', 'Athletes Attic', '717-234-9888','101 Greenfield Rd',
 'Lancaster', 'PA','US', '17601','MALO', '12', '1', NULL);
 
+-- Datos internacionales
 INSERT INTO cliente VALUES ('201', 'One Sport', '55-112066222','82 Via Bahia', 'Sao Paolo',
 NULL, 'Brazil', NULL,'EXCELENTE', '12', '2', NULL);
 INSERT INTO cliente VALUES ('202', 'Deportivo Caracas', '58-28066222','31 Sabana Grande',
@@ -60,9 +60,8 @@ INSERT INTO cliente VALUES ('207', 'Tall Rock Sports', '234-16036222','10 Saint 
 'Lagos', NULL, 'Nigeria', NULL,'BUENO', NULL, '3', NULL);
 INSERT INTO cliente VALUES ('208', 'Muench Sports', '49-895274449','435 Gruenestrasse',
 'Munich', NULL, 'Germany', NULL,'BUENO', '13', '5', NULL);
-
 INSERT INTO cliente VALUES ('209', 'Beisbol Si!', '809-352666','415 Playa Del Mar',
- 'San Pedro de Macoris', NULL, 'Dominican Republic', NULL, 'EXCELENTE', '11', '6', NULL);
+'San Pedro de Macoris', NULL, 'Dominican Republic', NULL, 'EXCELENTE', '11', '6', NULL);
 INSERT INTO cliente VALUES ('210', 'Futbol Sonora', '52-404555','5 Via Saguaro', 'Nogales',
 NULL, 'Mexico', NULL,'EXCELENTE', '12', '2', NULL);
 INSERT INTO cliente VALUES ('211', 'Helmut''s Sports', '42-2111222','45 Modrany', 'Prague',
@@ -75,4 +74,3 @@ INSERT INTO cliente VALUES ('214', 'Sports Retail', '1-716-555-7777','115 Main S
 'Buffalo', 'NY', 'US', NULL, 'MALO', '11', '1', NULL);
 INSERT INTO cliente VALUES ('215', 'Sports Russia', '7-0953892444','7070 Yekatamina',
 'Saint Petersburg', NULL, 'Russia', NULL,'MALO', '11', '5', NULL);
-COMMIT;
